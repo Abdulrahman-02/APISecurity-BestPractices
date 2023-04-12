@@ -49,3 +49,39 @@ Here are some examples of established authentication mechanisms that you can use
 Encryption is a process of converting plain text data into a cipher text that can only be deciphered by someone who has the decryption key. This makes it difficult for attackers to access sensitive data, even if they are able to intercept it or gain unauthorized access to it.
 
 To encrypt sensitive data, you can use encryption algorithms such as AES or RSA, along with a strong key management system to ensure that keys are securely stored and managed. Additionally, you can implement other security measures such as access controls, firewalls, and intrusion detection systems to further protect sensitive data.
+
+## Acces Control
+### Throttle Requests
+- Limit requests (throttling) to avoid DDoS / Brute Force attacks.
+
+Limiting requests through throttling is important to prevent DDoS attacks and brute force attacks. DDoS attacks overwhelm the server with too many requests, while brute force attacks try to guess user credentials through multiple login attempts.
+
+Throttling limits the number of requests that can be sent within a certain time period, making it harder for attackers to carry out these types of attacks. This can protect the system from being overwhelmed and can prevent attackers from gaining unauthorized access.
+
+### Use HTTPs
+- Use HTTPS on server side and secure ciphers
+
+Ensure that your API server uses HTTPS instead of HTTP. HTTPS is a secure protocol that encrypts data in transit, making it difficult for attackers to intercept and read sensitive information. To implement HTTPS, you need to obtain an SSL/TLS certificate and configure your server to use HTTPS.
+
+HTTPS uses ciphers to encrypt data in transit. It is important to choose secure ciphers that are resistant to attacks and offer strong encryption. Some common secure ciphers include AES, ChaCha20, and ECDHE for key exchange. Make sure to disable weak and outdated ciphers, such as RC4 and TLS 1.0/1.1, which are vulnerable to attacks.
+
+### HSTS Header
+- Use HSTS header with SSL to avoid SSL Strip attacks.
+
+SSL strip is a type of attack where an attacker intercepts traffic between a client and a server that is meant to be secured by SSL/TLS encryption, and downgrades the connection to a plain text (non-encrypted) HTTP connection. This type of attack can go unnoticed by the user because the attacker is able to redirect the user to a look-alike website that also uses HTTP instead of HTTPS.
+
+In an SSL strip attack, the attacker sets up a man-in-the-middle (MITM) position between the client and the server. When the client initiates a connection with the server, the attacker intercepts the SSL/TLS traffic and removes or replaces the HTTPS links with HTTP links. This can trick the user into thinking they are using a secure connection when in fact, they are not. The attacker can then monitor and manipulate the data transmitted between the client and server.
+
+HSTS header is a security header that instructs browsers to only access the site over HTTPS. This header is used to prevent SSL Strip attacks. It is a good practice to use HSTS header with SSL.
+
+### Directory Listings
+- Turn off directory listings
+
+Directory listings are a feature of web servers that allow users to view the contents of a directory on a server. By default, web servers often have directory listings enabled, which means that anyone who has access to the server can see all the files and directories in a given folder.
+
+Turning off directory listings is important for API security because it prevents attackers from gaining access to sensitive files and directories on the server. If directory listings are enabled and an attacker gains access to the server, they can easily view and download any files that are not properly protected. By disabling directory listings, you can ensure that only authorized users can access the files and directories on the server.
+
+### Restrict Private APIs
+- Private APIs should only be accessible from safe listed IPs
+
+Private APIs should only be accessible from safe-listed IPs to ensure that only authorized users or systems can access the API. By restricting access to specific IP addresses, you can prevent unauthorized access from external networks or malicious actors. This can help to protect sensitive data and prevent attacks such as DDoS or brute-force attacks. Additionally, restricting access to safe-listed IPs can help to ensure the reliability and performance of the API by preventing excessive traffic from unauthorized sources.
